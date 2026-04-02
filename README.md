@@ -13,12 +13,14 @@ Files in This Repository
 gen7_model.py — main script
 requirements.txt — Python dependencies
 README.md — setup and run instructions
+
 1. Download This Repository
 
 Either download the ZIP from GitHub and unzip it, or clone it with:
 
 git clone https://github.com/jwm2181/Maddie-Jacob-Applied-ML-Final.git
 cd Maddie-Jacob-Applied-ML-Final
+
 2. Install Python Dependencies
 
 Create a Python environment if desired, then run:
@@ -34,6 +36,7 @@ The ORD data repository uses Git LFS.
 On Mac
 brew install git-lfs
 git lfs install
+
 4. Download the ORD Dataset
 
 Clone the ORD data repository:
@@ -48,8 +51,10 @@ Create a local data/ folder inside this project and copy the dataset into it:
 
 mkdir -p data
 cp ord-data/data/47/ord_dataset-47eaacc46c3a4487bbdf99adb1a15e41.pb.gz data/
+
 5. Run the Model
 python gen7_model.py --pb-path data/ord_dataset-47eaacc46c3a4487bbdf99adb1a15e41.pb.gz
+
 6. Outputs
 
 The script writes results to the results/ folder:

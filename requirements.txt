@@ -1,7 +1,7 @@
 numpy
 pandas
 matplotlib
-scikit-learn
-xgboost
+scikit-learn>=1.0
+xgboost>=1.6
 rdkit
 ord-schema

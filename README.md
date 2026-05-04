@@ -1,69 +1,49 @@
-Generation 7 Amide Yield Model
+# Amide Coupling Yield Prediction — Generational Model Study
 
-This project trains a tuned XGBoost model to predict amide coupling yield from:
+This project systematically investigates what drives amide coupling yield 
+prediction through a 9-generation ablation study, varying feature sets, 
+model classes, and hyperparameters.
 
-amine Morgan fingerprints
-acid Morgan fingerprints
-one-hot encoded reaction-condition features
-Tested Environment
+## Tested Environment
+Python 3.9+
 
-Tested with Python 3.9+.
-
-Files in This Repository
-gen7_model.py — main script
+## Files in This Repository
+amide_yield_model2.py — main script (all 9 generations + figures)
 requirements.txt — Python dependencies
 README.md — setup and run instructions
 
-1. Download This Repository
-
-Either download the ZIP from GitHub and unzip it, or clone it with:
-
+## 1. Clone This Repository
 git clone https://github.com/jwm2181/Maddie-Jacob-Applied-ML-Final.git
 cd Maddie-Jacob-Applied-ML-Final
 
-2. Install Python Dependencies
-
-Create a Python environment if desired, then run:
-
+## 2. Install Dependencies
 pip install -r requirements.txt
 
-If rdkit fails to install with pip, using a Conda environment is often more reliable.
+If rdkit fails with pip, use Conda:
+conda install -c conda-forge rdkit
 
-3. Install Git LFS
-
-The ORD data repository uses Git LFS.
-
-On Mac
+## 3. Install Git LFS
 brew install git-lfs
 git lfs install
 
-4. Download the ORD Dataset
-
-Clone the ORD data repository:
-
+## 4. Download the ORD Dataset
 git clone https://github.com/open-reaction-database/ord-data.git
-
-Find the dataset file:
-
-find ord-data -name "ord_dataset-47eaacc46c3a4487bbdf99adb1a15e41.pb.gz"
-
-Create a local data/ folder inside this project and copy the dataset into it:
-
 mkdir -p data
 cp ord-data/data/47/ord_dataset-47eaacc46c3a4487bbdf99adb1a15e41.pb.gz data/
 
-5. Run the Model
-python gen7_model.py --pb-path data/ord_dataset-47eaacc46c3a4487bbdf99adb1a15e41.pb.gz
+## 5. Run
+python amide_yield_model2.py \
+  --pb-path data/ord_dataset-47eaacc46c3a4487bbdf99adb1a15e41.pb.gz
 
-6. Outputs
+## 6. Outputs
+figure1_progression.png — R² across all 9 generations
+figure2_ablation.png — controlled XGBoost feature ablation
+figure3_feature_group_importance.png — feature group importance
+figure4_scatter_comparison.png — XGBoost vs MLP predicted vs actual
+figure5_fp_sweep.png — fingerprint size sensitivity
+model_generation_results_full.csv — all generation metrics
+fp_sweep_results.csv — fingerprint sweep metrics
 
-The script writes results to the results/ folder:
-
-gen7_readable_dataset.csv
-gen7_predicted_vs_actual.png
-gen7_feature_importance.csv
-gen7_top30_feature_importance.png
-Notes
-The full ORD dataset is not included in this repository.
-It must be downloaded separately using the instructions above.
-The script expects the dataset in .pb.gz format.
+## Notes
+The ORD dataset is not included. Download separately using the 
+instructions above. Dataset must be in .pb.gz format.
